@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+
+require './lib/steam_games'
+
+SteamGames::CLI.new.call

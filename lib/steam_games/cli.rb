@@ -1,14 +1,32 @@
 class SteamGames::CLI 
   
   def call 
-    puts "Hello. What is the maximum amount of money you would like to spend, (only the number is required)?"
-    max_price = gets.chomp 
     list_games
+    menu
   end 
   
   def list_games
-    #lists all the video games at or below the user-inputted price on the first page of the current "popular new releases" from Steam's website
-    puts "Games at appropriate price go here."
+    puts "Hello. These are the current 'Popular New Releases' on Steam's website:"
+    puts "List of the games is returned."
   end 
   
-end 
+  def menu
+    menu_input = nil 
+    while menu_input != "exit"
+    puts "Enter the name of the game for the percentage of positive reviews that game has received. May also 'exit', or enter 'games' for Steam's current 'Popular New Releases' again."
+    menu_input = gets.strip
+      case menu_input
+      when "Game name"
+        puts "Percentage of positive reviews for this game is returned."
+      when "games" 
+        list_games
+      when "exit"
+        exit 
+      else 
+        puts "Sorry, I'm not sure what that means. Here are the game's again:"
+        list_games
+        menu 
+      end 
+    end
+  end 
+end

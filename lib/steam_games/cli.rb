@@ -20,13 +20,18 @@ class SteamGames::CLI
         puts "Percentage of positive reviews for this game is returned."
       when "games" 
         list_games
-      when "exit"
-        exit 
       else 
+        if menu_input == "exit"
+          goodbye
+          exit
+        end 
         puts "Sorry, I'm not sure what that means. Here are the game's again:"
-        list_games
-        menu 
+        call
       end 
     end
+  end 
+  
+  def goodbye
+    puts "Goodbye! See you soon."
   end 
 end

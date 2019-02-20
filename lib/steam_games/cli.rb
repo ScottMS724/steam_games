@@ -8,6 +8,7 @@ class SteamGames::CLI
   def list_games
     puts "Hello. These are the current 'Popular New Releases' on Steam's website:"
     @games = SteamGames::Game.popular_new_releases
+    puts @games 
   end 
   
   def menu

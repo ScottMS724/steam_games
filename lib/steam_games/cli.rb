@@ -31,8 +31,13 @@ class SteamGames::CLI
     
       #case menu_input
       #when 
-      if @games.detect { |the_game| the_game.name.downcase == menu_input }
-        puts "#{menu_input.capitalize} has #{the_game.review}"
+      
+      #if @games.detect { |the_game| the_game.name.downcase == menu_input }
+       # puts "#{menu_input.capitalize} has #{the_game.review}"
+      if menu_input.to_i > 0 
+        menu_input = menu_input.to_i
+        the_game = @games[menu_input - 1]
+        puts "#{the_game.name} has #{the_game.review}"
       elsif menu_input == "games" 
         list_games
       else 

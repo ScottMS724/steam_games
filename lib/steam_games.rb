@@ -1,3 +1,7 @@
+require 'nokogiri'
+require 'open-uri'
+require 'pry'
+
 require_relative "./steam_games/version"
 require_relative './steam_games/cli'
 require_relative './steam_games/game'

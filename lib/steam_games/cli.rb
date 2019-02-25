@@ -38,4 +38,5 @@ class SteamGames::CLI
   def goodbye
     puts "Goodbye! See you soon."
   end 
+  
 end

@@ -19,33 +19,17 @@ class SteamGames::CLI
     while menu_input != "exit"
     puts "Enter the name of the game for the percentage of positive reviews that game has received. May also 'exit', or enter 'games' for Steam's current 'Popular New Releases' again."
     menu_input = gets.strip.downcase
-    
-    #if menu_input == "games"
-      #list_games
-    #elsif menu_input == "exit"
-      #goodbye
-      #exit 
-    #else 
-      #puts "#{menu_input.capitalize} has ." #search through @games hash to find the game instance that has menu_input.name and call .review on that game instance 
-    #end 
-    
-      #case menu_input
-      #when 
-      
-      #if @games.detect { |the_game| the_game.name.downcase == menu_input }
-       # puts "#{menu_input.capitalize} has #{the_game.review}"
-      if menu_input.to_i > 0 
-        menu_input = menu_input.to_i
-        the_game = @games[menu_input - 1]
-        puts "#{the_game.name} has #{the_game.review}"
-      elsif menu_input == "games" 
-        list_games
-      else 
-        if menu_input == "exit"
-          goodbye
-          exit
-        end 
-        puts "Sorry, I'm not sure what that means. Here are the game's again:"
+      selected_game = @games.detect { |the_game| the_game.name.downcase == menu_input }
+        if selected_game
+          puts "#{menu_input.capitalize} has #{selected_game.review}"
+        elsif menu_input == "games" 
+          list_games
+        else 
+          if menu_input == "exit"
+            goodbye
+            exit
+          end 
+          puts "Sorry, I'm not sure what that means. Here are the game's again:"
         call
       end 
     end

@@ -17,11 +17,11 @@ class SteamGames::CLI
     menu_input = nil 
     @games = SteamGames::Game.popular_new_releases
     while menu_input != "exit"
-    puts "Enter the name of the game for the percentage of positive reviews that game has received. May also 'exit', or enter 'games' for Steam's current 'Popular New Releases' again."
+    puts "Enter the name of the game for the date that game was released. May also 'exit', or enter 'games' for Steam's current 'Popular New Releases' again."
     menu_input = gets.strip.downcase
       selected_game = @games.detect { |the_game| the_game.name.downcase == menu_input }
         if selected_game
-          puts "#{menu_input.capitalize} has #{selected_game.review}"
+          puts "#{menu_input.capitalize} was released on #{selected_game.date_released}."
         elsif menu_input == "games" 
           list_games
         else 

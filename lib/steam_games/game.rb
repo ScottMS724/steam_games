@@ -20,13 +20,12 @@ class SteamGames::Game
     games_hash = []
       
     doc = Nokogiri::HTML(open("https://store.steampowered.com/search/?sort_by=Released_DESC&os=win&filter=popularnew"))
-    games = doc.search("div.responsive_search_name_combined")
-    games.each do |game|
+    all_games = doc.search("div.responsive_search_name_combined")
+    all_games.each do |game|
       name = game.search("span.title").text 
       date_released = game.search("div.col.search_released.responsive_secondrow").text 
       game = self.new(name, date_released)
       games_hash << game 
-      binding.pry
     end 
     
     

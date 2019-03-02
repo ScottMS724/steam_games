@@ -21,7 +21,7 @@ class SteamGames::CLI
     menu_input = gets.strip.downcase
       selected_game = @games.detect { |the_game| the_game.name.downcase == menu_input }
         if selected_game
-          puts "#{menu_input.capitalize} was released on #{selected_game.date_released}."
+          puts "#{menu_input.split.map(&:capitalize).join(' ')} was released on #{selected_game.date_released}."
         elsif menu_input == "games" 
           list_games
         else 

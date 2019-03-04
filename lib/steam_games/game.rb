@@ -13,6 +13,7 @@ class SteamGames::Game
     
    def self.scrape_games
     counter = 0 
+    
     games_hash = []
       
     doc = Nokogiri::HTML(open("https://store.steampowered.com/search/?sort_by=Released_DESC&os=win&filter=popularnew"))
@@ -22,9 +23,10 @@ class SteamGames::Game
       date_released = game.search("div.col.search_released.responsive_secondrow").text 
         specific_game_url = doc.css("div#search_result_container a.search_result_row")[counter].attr("href")
         specific_game_url_parse = Nokogiri::HTML(open(specific_game_url))
-      review = specific_game_url_parse.search("div.user_reviews_summary_row").text.gsub(/[^0-9a-z ]/i, ' ').strip 
+      review = specific_game_url_parse.search("div.user_reviews_summary_row").text.strip 
       game = self.new(name, date_released, review)
       games_hash << game 
+      
       counter += 1 
       
     end 

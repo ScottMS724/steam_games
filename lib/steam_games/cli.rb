@@ -22,15 +22,29 @@ class SteamGames::CLI
       selected_game = @games.detect { |the_game| the_game.name.downcase == menu_input }
         if selected_game
           puts "#{menu_input.split.map(&:capitalize).join(' ')} was released on #{selected_game.date_released}."
-        elsif menu_input == "games" 
-          list_games
-        else 
-          if menu_input == "exit"
-            goodbye
-            exit
-          end 
-          puts "Sorry, I'm not sure what that means. Here are the game's again:"
+          puts "If you would like the percentage of positive reviews for this game, type 'review', or can type 'games', or 'exit'."
+          review_input = gets.strip.downcase
+          if review_input == "review"
+            puts "Here is the information for #{selected_game.name}'s reviews: #{selected_game.review}"
+          elsif review_input == "games"
+            list_games
+          else 
+            if review_input == "exit"
+              goodbye 
+              exit
+            end
+            puts "Sorry, I'm not sure what that means. Here are the game's again:"
         call
+        end 
+      elsif menu_input == "games" 
+          list_games
+      else 
+        if menu_input == "exit"
+          goodbye
+          exit
+        end 
+        puts "Sorry, I'm not sure what that means. Here are the game's again:"
+      call
       end 
     end
   end 

@@ -7,14 +7,16 @@ class SteamGames::Game
     @review = review 
   end 
   
-   def self.popular_new_releases
-     self.scrape_games
-   end
+  
+  
+  def self.popular_new_releases
+    self.scrape_games
+  end
     
-   def self.scrape_games
+  def self.scrape_games
     counter = 0 
     
-    games_hash = []
+    games_array = []
       
     doc = Nokogiri::HTML(open("https://store.steampowered.com/search/?sort_by=Released_DESC&os=win&filter=popularnew"))
     all_games = doc.search("div.responsive_search_name_combined")
@@ -25,12 +27,24 @@ class SteamGames::Game
         specific_game_url_parse = Nokogiri::HTML(open(specific_game_url))
       review = specific_game_url_parse.search("div.user_reviews_summary_row").text.strip 
       game = self.new(name, date_released, review)
-      games_hash << game 
+      games_array << game 
       
       counter += 1 
       
     end 
-    games_hash
-   end 
+    games_array 
+  end 
+  
+  def self.just_names
+    game_name_array = [] 
+    doc = Nokogiri::HTML(open("https://store.steampowered.com/search/?sort_by=Released_DESC&os=win&filter=popularnew"))
+    all_games = doc.search("div.responsive_search_name_combined")
+    all_games.each do |game|
+      name = game.search("span.title").text
+      game = self.new(name, nil, nil)
+      game_name_array << game 
+    end 
+    game_name_array
+  end 
   
 end 

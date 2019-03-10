@@ -7,8 +7,8 @@ class SteamGames::CLI
   
   def list_games
     puts "Hello. These are the current 'Popular New Releases' on Steam's website:"
-    @games = SteamGames::Game.popular_new_releases
-    @games.each.with_index(1) do |game, i|
+    @game_names = SteamGames::Game.just_names 
+    @game_names.each.with_index(1) do |game, i|
       puts "#{i}. #{game.name}"
     end 
   end 
@@ -22,7 +22,7 @@ class SteamGames::CLI
       selected_game = @games.detect { |the_game| the_game.name.downcase == menu_input }
         if selected_game
           puts "#{menu_input.split.map(&:capitalize).join(' ')} was released on #{selected_game.date_released}."
-          puts "If you would like the review information for this game, type 'review', or you can type 'games', or 'exit'."
+          puts "If you would like the review information for this game, type 'review', or you can type 'games' for the list of games again, or 'exit'."
           review_input = gets.strip.downcase
           if review_input == "review"
             puts "Here is the information for #{selected_game.name}'s reviews: #{selected_game.review}"

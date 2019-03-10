@@ -25,7 +25,7 @@ class SteamGames::CLI
           puts "If you would like the review information for this game, type 'review', or you can type 'games' for the list of games again, or 'exit'."
           review_input = gets.strip.downcase
           if review_input == "review"
-            puts "Here is the information for #{selected_game.name}'s reviews: #{selected_game.review}"
+            puts "Here is the information for #{selected_game.name}'s reviews: #{selected_game.review.gsub(/\s+/, ' ').strip}"
           elsif review_input == "games"
             list_games
           else 

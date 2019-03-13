@@ -2,9 +2,7 @@ HELLO WORLD
 
 # SteamGames
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/steam_games`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+This Ruby gem provides a CLI to view the 25 most recent video games under the "popular new releases" section of Steam's website. The CLI can also provide the date any specific video game was released and the review information for each video game, upon user request. Steam is a video game distribution software.
 
 ## Installation
 
@@ -24,7 +22,7 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Type "./bin/steam_games" and follow the on-screen prompts.
 
 ## Development
 

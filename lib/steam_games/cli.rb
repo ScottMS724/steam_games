@@ -34,7 +34,7 @@ class SteamGames::CLI
               exit
             end
             puts "Sorry, I'm not sure what that means. Here are the game's again:"
-        call
+        list_games 
         end 
       elsif menu_input == "games" 
           list_games

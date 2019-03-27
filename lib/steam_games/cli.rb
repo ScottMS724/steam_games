@@ -1,25 +1,29 @@
 class SteamGames::CLI 
   
   def call 
+    scraping_games
     list_games
     menu
   end 
   
+  def scraping_games 
+    puts "Hello! Please wait while the information from Steam's website is retrieved."
+    SteamGames::Game.popular_new_releases
+  end 
+  
   def list_games
-    puts "Hello. These are the current 'Popular New Releases' on Steam's website:"
-    @game_names = SteamGames::Game.just_names 
-    @game_names.each.with_index(1) do |game, i|
+    puts "These are the current 'Popular New Releases' on Steam's website:"
+    SteamGames::Game.all.each.with_index(1) do |game, i|
       puts "#{i}. #{game.name}"
     end 
   end 
   
   def menu
     menu_input = nil 
-    @games = SteamGames::Game.popular_new_releases
     while menu_input != "exit"
     puts "Enter the name of the game for the date that game was released. May also 'exit', or enter 'games' for Steam's current 'Popular New Releases' again."
     menu_input = gets.strip.downcase
-      selected_game = @games.detect { |the_game| the_game.name.downcase == menu_input }
+      selected_game = SteamGames::Game.all.detect { |the_game| the_game.name.downcase == menu_input }
         if selected_game
           puts "#{menu_input.split.map(&:capitalize).join(' ')} was released on #{selected_game.date_released}."
           puts "If you would like the review information for this game, type 'review', or you can type 'games' for the list of games again, or 'exit'."

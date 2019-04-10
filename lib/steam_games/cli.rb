@@ -7,8 +7,8 @@ class SteamGames::CLI
   end 
   
   def scraping_games 
-    puts "Hello! Please wait while the most recent popular new releases are retrieved from Steam's website."
-    SteamGames::Game.scrape_games 
+    puts "Hello! Please wait while the most recent 'Popular New Releases' are retrieved from Steam's website."
+    SteamGames::Scraper.create_game_objects  
   end 
   
   def list_games

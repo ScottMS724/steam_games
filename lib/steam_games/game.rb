@@ -14,6 +14,9 @@ class SteamGames::Game
     @@all 
   end 
   
+  def self.find_by_name(name)
+    SteamGames::Game.all.detect { |the_game| the_game.name.downcase == name.downcase } 
+  end 
   
   
   #def self.popular_new_releases
@@ -37,9 +40,5 @@ class SteamGames::Game
 #      
 #    end 
 #  end 
-  
-  def self.find_by_name(name)
-    SteamGames::Game.all.detect { |the_game| the_game.name.downcase == name.downcase } 
-  end 
   
 end 

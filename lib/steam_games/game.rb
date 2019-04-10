@@ -16,9 +16,9 @@ class SteamGames::Game
   
   
   
-  def self.popular_new_releases
-    self.scrape_games
-  end
+  #def self.popular_new_releases
+  #  self.scrape_games
+  #end
     
   def self.scrape_games
     counter = 0 
@@ -36,6 +36,10 @@ class SteamGames::Game
       counter += 1 
       
     end 
+  end 
+  
+  def self.find_by_name(name)
+    SteamGames::Game.all.detect { |the_game| the_game.name.downcase == name.downcase } 
   end 
   
 end 

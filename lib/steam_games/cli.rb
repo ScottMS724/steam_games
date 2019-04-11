@@ -23,7 +23,6 @@ class SteamGames::CLI
     while menu_input != "exit"
     puts "Enter the name of the game (not case-sensitive) for the date that game was released. May also 'exit', or enter 'games' for Steam's current 'Popular New Releases' again."
     menu_input = gets.strip.downcase
-      #selected_game = SteamGames::Game.all.detect { |the_game| the_game.name.downcase == menu_input }
       selected_game = SteamGames::Game.find_by_name(menu_input)
         if selected_game
           puts "#{menu_input.split.map(&:capitalize).join(' ')} was released on #{selected_game.date_released}."
